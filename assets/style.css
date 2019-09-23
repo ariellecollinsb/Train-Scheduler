@@ -1,0 +1,14 @@
+
+body {
+
+    background-image: url(../assets/images/red-brick-wall-pattern-1.jpg);
+}
+
+.jumbotron {
+    background-color: #fbf9d3;
+    image-orientation: inherit;
+}
+
+.container {
+    background-color: #fbf9d3;
+}
