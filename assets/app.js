@@ -24,32 +24,54 @@ $("#submit").on("click", function (event) {
         lineName: lineName,
         destination: destination,
         firstArrival: firstArrival,
-        frequency: frequency
+        frequency: frequency,
+
     });
 
-});
+        $("#line-name").val("");
+        $("#destination").val("");
+        $("#first-arrival").val("");
+        $("#frequency").val("");
+        
 
+});
 database.ref().on("child_added", function (childSnapshot) {
 
-    
     var cv = childSnapshot.val();
-
+    
+    
+    var key = childSnapshot.key; 
     var firstTimeConverted = moment(cv.firstArrival, "HH:mm").subtract(1, "years");
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
     var tFrequency = cv.frequency;
     var tRemainder = diffTime % tFrequency;
     var tMinutesTillTrain = tFrequency - tRemainder;
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-   
-    $("#schedule").append(`<tr>
+
+    $("#schedule").append(`<tr id="row-${key}">
         <th scope="row">${cv.lineName}</th>
         <td>${cv.destination}</td>
         <td>${cv.frequency}</td>
         <td>${moment(nextTrain, "HH:mm").format("hh:mm a")}</td>
         <td>${tMinutesTillTrain}</td>
+        <td><button id="remove-${key}" class="remove" data-key=${key}>X</button></td>
         </tr>`);
+console.log(key);
+  $(`#remove-${key}`).on("click", function() {
+
+     database.ref().child(key).remove();
+
+
+  });
+    
 
 }, function (errorObject) {
     console.log("Errors handled: " + errorObject.code);
+
+
+});
+
+database.ref().on("child_removed", function(removeChild) {
+    $(`#row-${removeChild.key}`).remove();
 
 });

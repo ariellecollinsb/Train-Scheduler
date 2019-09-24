@@ -6,7 +6,11 @@ body {
 
 .jumbotron {
     background-color: #fbf9d3;
-    image-orientation: inherit;
+    background-image: url(../assets/images/background3.jpg);
+    background-position: top center;
+    background-size: cover;
+    height: 431px;
+    
 }
 
 .container {
