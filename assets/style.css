@@ -16,3 +16,16 @@ body {
 .container {
     background-color: #fbf9d3;
 }
+
+.remove {
+    
+    border: none;
+    border-radius: 3px;
+    padding: 0 10px;
+    background-color: #b48a64;
+
+}
+
+.btn {
+    background-color: #b48a64;
+}

@@ -54,7 +54,7 @@ database.ref().on("child_added", function (childSnapshot) {
         <td>${cv.frequency}</td>
         <td>${moment(nextTrain, "HH:mm").format("hh:mm a")}</td>
         <td>${tMinutesTillTrain}</td>
-        <td><button id="remove-${key}" class="remove" data-key=${key}>X</button></td>
+        <td><button id="remove-${key}" class="remove" data-key=${key}>Delete</button></td>
         </tr>`);
 console.log(key);
   $(`#remove-${key}`).on("click", function() {
